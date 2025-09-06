@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
 class PortfolioTheme {
-  static ThemeData darkNeon() {
-    const bg = Color(0xFF0B0E14);
-    const primary = Color(0xFF00FFC6); // neon mint
-    const accent = Color(0xFF9B5CFF); // purple
-    const surface = Color(0xFF121725);
+  static ThemeData lightWarm() {
+    // Whitish base with warm brown/orange secondary
+    const bg = Color(0xFFF8F8F6); // off-white
+    const surface = Color(0xFFFFFFFF);
+    const primary = Color(0xFFEDEAE3); // warm ivory as primary emphasis
+    const secondary = Color(0xFFD07A28); // warm brown/orange
 
-    final base = ThemeData.dark(useMaterial3: true);
-    return base.copyWith(
+    final base = ThemeData.light(useMaterial3: true);
+    final scheme = ColorScheme.fromSeed(
+      seedColor: secondary,
+      brightness: Brightness.light,
+      primary: primary,
+      secondary: secondary,
+      background: bg,
+      surface: surface,
+    );
+
+    return ThemeData.from(colorScheme: scheme, useMaterial3: true).copyWith(
       scaffoldBackgroundColor: bg,
-      colorScheme: base.colorScheme.copyWith(
-        primary: primary,
-        secondary: accent,
-        surface: surface,
-        background: bg,
-      ),
-      textTheme: _textTheme(base.textTheme),
+      textTheme: _textThemeLight(ThemeData.light().textTheme),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
@@ -25,14 +29,17 @@ class PortfolioTheme {
     );
   }
 
-  static TextTheme _textTheme(TextTheme base) {
+  static TextTheme _textThemeLight(TextTheme base) {
+    // Dark text for light background
+    const onBg = Color(0xFF1D1B16);
+    const onBgMuted = Color(0xFF4A473F);
     return base.copyWith(
-      displayLarge: base.displayLarge?.copyWith(color: Colors.white),
-      displayMedium: base.displayMedium?.copyWith(color: Colors.white),
-      titleLarge: base.titleLarge?.copyWith(color: Colors.white),
-      bodyLarge: base.bodyLarge?.copyWith(color: Colors.white70),
-      bodyMedium: base.bodyMedium?.copyWith(color: Colors.white70),
-      labelLarge: base.labelLarge?.copyWith(color: Colors.white70),
+      displayLarge: base.displayLarge?.copyWith(color: onBg),
+      displayMedium: base.displayMedium?.copyWith(color: onBg),
+      titleLarge: base.titleLarge?.copyWith(color: onBg),
+      bodyLarge: base.bodyLarge?.copyWith(color: onBgMuted),
+      bodyMedium: base.bodyMedium?.copyWith(color: onBgMuted),
+      labelLarge: base.labelLarge?.copyWith(color: onBgMuted),
     );
   }
 }

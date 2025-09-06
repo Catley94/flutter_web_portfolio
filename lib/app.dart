@@ -41,7 +41,7 @@ class _PortfolioAppState extends State<PortfolioApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sam — Game Dev & Software Engineer',
-      theme: PortfolioTheme.darkNeon(),
+      theme: PortfolioTheme.lightWarm(),
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(64),
@@ -76,9 +76,9 @@ class _TopNav extends StatelessWidget {
     final color = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.3),
-        border: Border(bottom: BorderSide(color: Colors.white10)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 8)],
+        color: Colors.white.withOpacity(0.7),
+        border: const Border(bottom: BorderSide(color: Color(0x22000000))),
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12, offset: const Offset(0, 4))],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -89,7 +89,10 @@ class _TopNav extends StatelessWidget {
           const SizedBox(width: 8),
           FilledButton.icon(
             onPressed: () {},
-            style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(color.primary)),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(color.secondary),
+              foregroundColor: const WidgetStatePropertyAll(Colors.white),
+            ),
             icon: const Icon(Icons.email_outlined),
             label: const Text('Hire Me'),
           ),
